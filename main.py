@@ -1,4 +1,6 @@
+import embed
 import discord
+import leetcode
 
 from typing import Union
 from config import Config
@@ -16,7 +18,9 @@ class LeetBot(discord.Client):
 
     @tasks.loop(seconds=Config.PROBLEM_INTERVAL)
     async def getProblem(self):
-        await self.channel.send(f'Get a problem! {self.leetcodeRole.mention}')
+        problem = leetcode.getRandomProblem()
+        await self.channel.send(embed=embed.buildEmbed(problem))
+        await self.channel.send(self.leetcodeRole.mention)
 
     @getProblem.before_loop
     async def before_my_task(self):
