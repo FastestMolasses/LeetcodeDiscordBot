@@ -1,7 +1,7 @@
 # Leetcode Discord Bot
 Sends daily problem to a Discord channel. Tested on Python 3.10.
 
-![python](https://github.com/FastestMolasses/LeetcodeDiscordBot/actions/workflows/main.yml/badge.svg)
+![python](https://github.com/FastestMolasses/LeetcodeDiscordBot/actions/workflows/main.yaml/badge.svg)
 
 ## Installation
 
