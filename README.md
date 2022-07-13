@@ -31,3 +31,20 @@ Sends daily problem to a Discord channel. Tested on Python 3.10.
 5. Rename `.env.sample` to `.env` and fill out the required credentials
 
 6. Run main.py
+
+## Building Docker
+
+Run this command to build the Docker container
+```bash
+make build-container-dev
+```
+
+Then use this command to run the container
+```bash
+make run-container-dev
+```
+
+For building the container for AWS, use
+```bash
+make build-container
+```

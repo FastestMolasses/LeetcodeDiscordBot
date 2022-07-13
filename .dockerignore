@@ -1,0 +1,11 @@
+*.zip
+scripts/
+env/
+README.md
+__pycache__/
+test.*
+.env.sample
+*.json
+.flake8
+terraform/
+.github/
