@@ -1,0 +1,7 @@
+[flake8]
+max-line-length = 100
+ignore = E402,
+exclude = .git,__pycache__,env,.github,sampleData,scripts,terraform,test.py,migrations/versions
+indent-size = 4
+statistics = True
+max-complexity = 5
