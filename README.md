@@ -48,3 +48,29 @@ For building the container for AWS, use
 ```bash
 make build-container
 ```
+
+## Setting up Terraform and AWS
+
+1. Create a unique bucket name by going to `vars.tf` and updating the default value for the `tf-bucket-name` variable.
+
+2. Update to your bucket name in `tfstate.tf` under the `terraform` block at the bottom of the file.
+
+3. Comment out the `terraform` block all the way at the bottom of the `tfstate.tf` file. This is because Terraform expects the S3 bucket to be already created prior to initializing it.
+
+2. Initialize terraform
+    ```bash
+    cd terraform/
+    terraform init
+    ```
+
+3. Apply the terraform code
+    ```bash
+    terraform apply
+    ```
+
+4. Uncomment the `terraform` block that you commented in step 3.
+
+5. Run apply again to create the S3 bucket to hold the terraform state
+    ```bash
+    terraform apply
+    ```
