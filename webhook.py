@@ -3,4 +3,4 @@ from leetcode import getRandomProblem
 
 
 if __name__ == '__main__':
-    buildWebhook(getRandomProblem()).execute()
+    buildWebhook(getRandomProblem(useDownloaded=True)).execute()

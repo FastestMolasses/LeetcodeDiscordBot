@@ -1,3 +1,4 @@
+import json
 import enum
 import random
 import requests
@@ -62,13 +63,18 @@ class LeetcodeProblemInfo(TypedDict):
     difficulty: ProblemDifficulty
 
 
-def getAllProblems() -> List[LeetcodeProblemInfo]:
+def getAllProblems(useDownloaded: bool = False) -> List[LeetcodeProblemInfo]:
     """
         Get all problems from leetcode, then format them into a readable list of dicts.
     """
-    problems: LeetcodeAPIResponse = requests.get(GET_PROBLEMS_URL, headers={
-        'User-Agent': USER_AGENT
-    }).json()
+    if useDownloaded:
+        with open('problems.json', 'r') as f:
+            problems = json.load(f)
+    else:
+        print('fuck')
+        problems: LeetcodeAPIResponse = requests.get(GET_PROBLEMS_URL, headers={
+            'User-Agent': USER_AGENT
+        }).json()
 
     # Format the problems
     problemsFormatted: List[LeetcodeProblemInfo] = []
@@ -89,8 +95,12 @@ def getAllProblems() -> List[LeetcodeProblemInfo]:
     return problemsFormatted
 
 
-def getRandomProblem(difficulty: ProblemDifficulty = ProblemDifficulty.Medium) -> LeetcodeProblemInfo:
-    problems = getAllProblems()
+def getRandomProblem(difficulty: ProblemDifficulty = None, useDownloaded: bool = False) -> LeetcodeProblemInfo:
+    # Select random difficulty if not specified
+    if not difficulty:
+        difficulty = random.choice(list(ProblemDifficulty))
+
+    problems = getAllProblems(useDownloaded)
     filteredProblems = [problem for problem in problems if problem['difficulty'] == difficulty]
     return random.choice(filteredProblems)
 
