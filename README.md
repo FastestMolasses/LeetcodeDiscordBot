@@ -31,7 +31,7 @@ Sends daily problem to a Discord channel. Tested on Python 3.10.
 
 5. Rename `.env.sample` to `.env` and fill out the required credentials
 
-6. Run main.py
+6. Run bot.py for the discord bot, or webhook.py to send a webhook. The webhook.py script can be used in a cron job.
 
 ## Setting up Terraform and AWS
 

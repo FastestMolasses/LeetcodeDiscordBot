@@ -19,7 +19,7 @@ class LeetBot(discord.Client):
     @tasks.loop(seconds=Config.PROBLEM_INTERVAL)
     async def getProblem(self):
         problem = leetcode.getRandomProblem()
-        await self.channel.send(embed=embed.buildEmbed(problem))
+        await self.channel.send(embed=embed.buildBotEmbed(problem))
         await self.channel.send(self.leetcodeRole.mention)
 
     @getProblem.before_loop

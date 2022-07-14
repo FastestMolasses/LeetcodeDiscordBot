@@ -1,5 +1,7 @@
 import discord
 
+from config import Config
+from discord_webhook import DiscordEmbed, DiscordWebhook
 from leetcode import ProblemDifficulty, LeetcodeProblemInfo
 
 
@@ -14,7 +16,7 @@ def difficultyToColor(difficulty: ProblemDifficulty) -> int:
         return 0x9CAFB7
 
 
-def buildEmbed(problem: LeetcodeProblemInfo) -> discord.Embed:
+def buildBotEmbed(problem: LeetcodeProblemInfo) -> discord.Embed:
     embed = discord.Embed(title=f'[{problem["question_id"]}] ' + problem['question__title'],
                           color=difficultyToColor(problem['difficulty']))
     embed.add_field(name='URL', value=problem['url'], inline=False)
@@ -25,3 +27,20 @@ def buildEmbed(problem: LeetcodeProblemInfo) -> discord.Embed:
 
     embed.set_footer(text='by mink#8888')
     return embed
+
+
+def buildWebhook(problem: LeetcodeProblemInfo) -> DiscordWebhook:
+    webhook = DiscordWebhook(Config.WEBHOOK_URL)
+
+    embed = DiscordEmbed(title=f'[{problem["question_id"]}] ' + problem['question__title'],
+                         color=difficultyToColor(problem['difficulty']))
+    embed.add_embed_field(name='URL', value=problem['url'], inline=False)
+    embed.add_embed_field(name='Difficulty', value=problem['difficulty'].name, inline=True)
+
+    acceptanceRate = problem['total_acceptance'] / problem['total_submitted'] * 100
+    embed.add_embed_field(name='Acceptance Rate', value=f'{acceptanceRate:.2f}%', inline=True)
+
+    embed.set_footer(text='by mink#8888')
+
+    webhook.add_embed(embed)
+    return webhook

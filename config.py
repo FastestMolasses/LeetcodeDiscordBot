@@ -12,3 +12,4 @@ class Config:
     DISCORD_CHANNEL = int(os.environ['DISCORD_CHANNEL'])
     SERVER_ID = int(os.environ['SERVER_ID'])
     LEETCODE_ROLE = int(os.environ['LEETCODE_ROLE'])
+    WEBHOOK_URL = os.environ['WEBHOOK_URL']
