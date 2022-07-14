@@ -1,4 +1,5 @@
 # Leetcode Discord Bot
+
 Sends daily problem to a Discord channel. Tested on Python 3.10.
 
 ![python](https://github.com/FastestMolasses/LeetcodeDiscordBot/actions/workflows/main.yaml/badge.svg)
@@ -32,23 +33,6 @@ Sends daily problem to a Discord channel. Tested on Python 3.10.
 
 6. Run main.py
 
-## Building Docker
-
-Run this command to build the Docker container
-```bash
-make build-container-dev
-```
-
-Then use this command to run the container
-```bash
-make run-container-dev
-```
-
-For building the container for AWS, use
-```bash
-make build-container
-```
-
 ## Setting up Terraform and AWS
 
 1. Create a unique bucket name by going to `vars.tf` and updating the default value for the `tf-bucket-name` variable.
@@ -57,20 +41,30 @@ make build-container
 
 3. Comment out the `terraform` block all the way at the bottom of the `tfstate.tf` file. This is because Terraform expects the S3 bucket to be already created prior to initializing it.
 
-2. Initialize terraform
+4. Initialize terraform
+
     ```bash
     cd terraform/
     terraform init
     ```
 
-3. Apply the terraform code
+5. Apply the terraform code
+
     ```bash
     terraform apply
     ```
 
-4. Uncomment the `terraform` block that you commented in step 3.
+6. Uncomment the `terraform` block that you commented in step 3.
 
-5. Run apply again to create the S3 bucket to hold the terraform state
+7. Run apply again to create the S3 bucket to hold the terraform state
     ```bash
     terraform apply
     ```
+
+## Deploying to AWS
+
+1. Go to AWS/ECR
+
+2. Select the `leetbot` repo
+
+3. On the top, click `View push commands` and follow the commands to upload the Leetbot docker image to ECR

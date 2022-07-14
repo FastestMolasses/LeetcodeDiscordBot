@@ -1,11 +1,11 @@
 build-container-dev:
-	docker build -t leetcode-discord-bot-dev .
+	docker build -t leetbot .
 
 build-container:
-	docker buildx build --platform=linux/amd64 -t leetcode-discord-bot .
+	docker buildx build --platform=linux/amd64 -t leetbot .
 
 run-container-dev:
-	docker run --name=leetcode-discord-bot-dev -d leetcode-discord-bot-dev
+	docker run --name=leetbot -d leetbot
 
 run-container:
-	docker run --name=leetcode-discord-bot -d leetcode-discord-bot
+	docker run --name=leetbot -d leetbot
