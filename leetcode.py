@@ -3,6 +3,7 @@ import enum
 import random
 import requests
 
+from datetime import datetime
 from typing import Dict, TypedDict, Union, List
 
 PROBLEM_URL = 'https://leetcode.com/problems/'
@@ -98,7 +99,14 @@ def getAllProblems(useDownloaded: bool = False) -> List[LeetcodeProblemInfo]:
 def getRandomProblem(difficulty: ProblemDifficulty = None, useDownloaded: bool = False) -> LeetcodeProblemInfo:
     # Select random difficulty if not specified
     if not difficulty:
-        difficulty = random.choice(list(ProblemDifficulty))
+        curDay = datetime.today().weekday()
+        # Monday is 0, Sunday is 6
+        if curDay in [0, 2]:
+            difficulty = ProblemDifficulty.Easy
+        elif curDay in [1, 3, 4, 6]:
+            difficulty = ProblemDifficulty.Medium
+        else:
+            difficulty = ProblemDifficulty.Hard
 
     problems = getAllProblems(useDownloaded)
     filteredProblems = [problem for problem in problems if problem['difficulty'] == difficulty]
