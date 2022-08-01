@@ -72,7 +72,6 @@ def getAllProblems(useDownloaded: bool = False) -> List[LeetcodeProblemInfo]:
         with open('problems.json', 'r') as f:
             problems = json.load(f)
     else:
-        print('fuck')
         problems: LeetcodeAPIResponse = requests.get(GET_PROBLEMS_URL, headers={
             'User-Agent': USER_AGENT
         }).json()
