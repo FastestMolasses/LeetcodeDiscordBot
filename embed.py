@@ -1,6 +1,5 @@
 import discord
 
-from config import Config
 from discord_webhook import DiscordEmbed, DiscordWebhook
 from leetcode import ProblemDifficulty, LeetcodeProblemInfo
 
@@ -29,8 +28,8 @@ def buildBotEmbed(problem: LeetcodeProblemInfo) -> discord.Embed:
     return embed
 
 
-def buildWebhook(problem: LeetcodeProblemInfo) -> DiscordWebhook:
-    webhook = DiscordWebhook(Config.WEBHOOK_URL)
+def buildWebhook(problem: LeetcodeProblemInfo, url: str) -> DiscordWebhook:
+    webhook = DiscordWebhook(url)
 
     embed = DiscordEmbed(title=f'[{problem["question_id"]}] ' + problem['question__title'],
                          color=difficultyToColor(problem['difficulty']))

@@ -13,3 +13,4 @@ class Config:
     SERVER_ID = int(os.environ['SERVER_ID'])
     LEETCODE_ROLE = int(os.environ['LEETCODE_ROLE'])
     WEBHOOK_URL = os.environ['WEBHOOK_URL']
+    WEBHOOK_URL2 = os.environ['WEBHOOK_URL2']
